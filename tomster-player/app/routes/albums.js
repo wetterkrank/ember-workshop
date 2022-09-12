@@ -12,8 +12,8 @@ export default class AlbumsRoute extends Route {
     let albums = await this.store.findAll('album');
 
     await Promise.all([
-      ...albums.map(async album => album.get('songs')),
-      ...albums.map(async album => album.get('comments'))
+      ...albums.map(async (album) => album.get('songs')),
+      ...albums.map(async (album) => album.get('comments')),
     ]);
 
     return albums;

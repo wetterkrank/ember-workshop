@@ -1,5 +1,5 @@
 import Service, { inject as service } from '@ember/service';
-import { tracked } from "@glimmer/tracking";
+import { tracked } from '@glimmer/tracking';
 
 export const CURRENT_SONG_KEY_NAME = 'CURRENT_SONG';
 
@@ -15,7 +15,7 @@ export default class PlayerService extends Service {
     this.audio = document.createElement('audio');
     this.source = document.createElement('source');
     this.audio.appendChild(this.source);
-    this.audio.addEventListener('ended', () => this.set('isPlaying', false));
+    this.audio.addEventListener('ended', () => (this.isPlaying = false));
 
     this._restoreCurrentSong();
   }
@@ -45,10 +45,10 @@ export default class PlayerService extends Service {
   _persistCurrentSong() {
     window.localStorage.setItem(CURRENT_SONG_KEY_NAME, this.song.id);
   }
-	
+
   async _restoreCurrentSong() {
     let songId = localStorage.getItem(CURRENT_SONG_KEY_NAME);
-	
+
     if (songId) {
       let song = await this.store.findRecord('song', songId);
       this.song = song;

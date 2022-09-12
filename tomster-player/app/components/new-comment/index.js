@@ -1,7 +1,7 @@
 import Component from '@glimmer/component';
 import { inject as service } from '@ember/service';
-import { tracked } from "@glimmer/tracking";
-import { action } from "@ember/object";
+import { tracked } from '@glimmer/tracking';
+import { action } from '@ember/object';
 
 export default class NewCommentComponent extends Component {
   @service store;
@@ -19,13 +19,13 @@ export default class NewCommentComponent extends Component {
       { value: 2, label: '⭐️⭐️' },
       { value: 3, label: '⭐️⭐️⭐️' },
       { value: 4, label: '⭐️⭐️⭐️⭐️' },
-      { value: 5, label: '⭐️⭐️⭐️⭐️⭐️' }
+      { value: 5, label: '⭐️⭐️⭐️⭐️⭐️' },
     ].map((option) => {
       return {
         ...option,
-        selected: option.value === this.rating
+        selected: option.value === this.rating,
       };
-    })
+    });
   }
 
   @action

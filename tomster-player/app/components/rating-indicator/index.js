@@ -1,10 +1,9 @@
-import Component from '@ember/component';
-import { computed } from '@ember/object';
+import Component from '@glimmer/component';
 
-export default Component.extend({
-  activeStars: computed('rating', function() {
-    let roundedRating = Math.round(this.rating)
+export default class RatingIndicator extends Component {
+  get activeStars() {
+    let roundedRating = Math.round(this.rating);
 
     return new Array(roundedRating);
-  }),
-});
+  }
+}

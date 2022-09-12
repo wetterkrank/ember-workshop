@@ -1,7 +1,7 @@
 import Service from '@ember/service';
 import io from 'socket.io-client';
 import { inject as service } from '@ember/service';
-import { tracked } from "@glimmer/tracking";
+import { tracked } from '@glimmer/tracking';
 
 export default class SockerService extends Service {
   @service store;
@@ -12,14 +12,14 @@ export default class SockerService extends Service {
   connect() {
     this.socket = io.connect(window.location.origin, {
       query: {
-        token: this.session.data.authenticated.access_token
-      }
+        token: this.session.data.authenticated.access_token,
+      },
     });
 
-    this.socket.on("connect", () => {
+    this.socket.on('connect', () => {
       this.id = this.socket.id;
     });
-    this.socket.on("disconnect", () => {
+    this.socket.on('disconnect', () => {
       this.id = null;
     });
 
