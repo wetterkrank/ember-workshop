@@ -1,16 +1,4 @@
-<h1>Albums</h1>
+<h1>Index Page</h1>
 
-<ul style="list-style-type: none;">
-  {{#each @model as |album|}}
-    <li>
-      <div style="margin-bottom: 2em;" {{on "click" (fn this.alert album)}}>
-        <img src={{album.coverUrl}} alt="">
-        <p>
-          {{album.title}}
-        </p>
-      </div>
-    </li>
-  {{/each}}
-</ul>
 
 {{outlet}}
