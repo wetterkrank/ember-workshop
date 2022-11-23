@@ -1,5 +1,17 @@
-<h2>{{model.title}}</h2>
+<div class="row">
+  <div class="col-9">
+    <h3>{{this.model.title}}</h3>
+  </div>
+  <div class="col-3">
+    <img class="w-100" src={{this.model.coverUrl}} alt="" />
+  </div>
 
-<div style="margin-bottom: 2em;">
-  <img src={{model.coverUrl}} alt="">
 </div>
+
+<ul class="list-group list-group-flush">
+  {{#each this.model.songs as |song|}}
+    <li class="list-group-item">
+      {{song.title}}
+    </li>
+  {{/each}}
+</ul>
