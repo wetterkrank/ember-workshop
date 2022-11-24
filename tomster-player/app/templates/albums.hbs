@@ -1,5 +1,5 @@
 <div class="row">
-  <div class="col-3">
+  <div class="col-4">
     <div class="list-group">
       {{#each this.model as |album|}}
         <LinkTo @route="albums.album" @model={{album.id}} class="list-group-item list-group-item-action">
@@ -10,7 +10,7 @@
   </div>
 
   {{!-- Selected album --}}
-  <div class="col-9">
+  <div class="col-8">
     {{outlet}}
   </div>
 </div>

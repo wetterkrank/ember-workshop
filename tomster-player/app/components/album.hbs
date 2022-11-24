@@ -1,14 +1,14 @@
 <div class="row">
-  <div class="col-9">
-    <h3>{{@info.title}}</h3>
-  </div>
-  <div class="col-3">
+  <div class="col-5">
+    <h4>{{@info.title}}</h4>
     <img class="w-100" src={{@info.coverUrl}} alt="" />
   </div>
-</div>
 
-<ul class="list-group list-group-flush">
-  {{#each @songs as |song|}}
-    <Song @title={{song.title}} />
-  {{/each}}
-</ul>
+  <div class="col-7">
+    <ul class="list-group list-group-flush">
+      {{#each @songs as |song|}}
+        <Song @song={{song}} />
+      {{/each}}
+    </ul>
+  </div>
+</div>

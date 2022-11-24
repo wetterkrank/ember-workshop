@@ -1,3 +1,7 @@
-<li class="list-group-item">
-  {{ @title }}
+<li
+  class="list-group-item pe-auto"
+  style="cursor: pointer"
+  {{on "click" (fn this.togglePlay @song)}}
+>
+  {{@song.title}}
 </li>
