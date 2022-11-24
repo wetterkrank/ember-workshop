@@ -1,17 +1,21 @@
-<div class="row">
-  <div class="col-9">
-    <h3>{{this.model.title}}</h3>
-  </div>
-  <div class="col-3">
-    <img class="w-100" src={{this.model.coverUrl}} alt="" />
-  </div>
+{{#if this.model.songs.isPending}}
+  ...
+{{else}}
+  <Album @info={{this.model}} @songs={{this.model.songs}} />
 
-</div>
+  {{! Album comments }}
+  <div class="mt-5">
+    <h5>Comments</h5>
 
-<ul class="list-group list-group-flush">
-  {{#each this.model.songs as |song|}}
-    <li class="list-group-item">
-      {{song.title}}
-    </li>
-  {{/each}}
-</ul>
+    <ul class="list-group">
+      {{#each this.model.comments as |comment|}}
+        <AlbumComment @rating={{comment.rating}} @text={{comment.text}} />
+      {{/each}}
+    </ul>
+
+    <p class="mt-4">
+      <label for="album-comment">Add a comment:</label>
+      <Input id="album-comment" @type="text" @enter={{this.addComment}} />
+    </p>
+  </div>
+{{/if}}
