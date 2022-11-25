@@ -2,25 +2,36 @@ import { module, test } from 'qunit';
 import { setupRenderingTest } from 'ember-qunit';
 import { render } from '@ember/test-helpers';
 import { hbs } from 'ember-cli-htmlbars';
+import Service from '@ember/service';
+
+// Stub remoteControl service
+class RemoteControl extends Service {
+  song = {
+    title: 'I Will Always Love You',
+    album: {
+      title: 'Whitney Houston'
+    }
+  };
+
+  registerAudio() {}
+}
 
 module('Integration | Component | player', function(hooks) {
   setupRenderingTest(hooks);
 
-  test('it renders', async function(assert) {
-    // Set any properties with this.set('myProperty', 'value');
-    // Handle any actions with this.set('myAction', function(val) { ... });
+  hooks.beforeEach(function() {
+    this.owner.register('service:remote-control', RemoteControl);
+  });
 
+  test('it renders the Audio element', async function(assert) {
     await render(hbs`<Player />`);
 
-    assert.equal(this.element.textContent.trim(), '');
+    assert.dom('audio').exists();
+  });
 
-    // Template block usage:
-    await render(hbs`
-      <Player>
-        template block text
-      </Player>
-    `);
+  test('it renders the current song details', async function(assert) {
+    await render(hbs`<Player />`);
 
-    assert.equal(this.element.textContent.trim(), 'template block text');
+    assert.dom(this.element).containsText('I Will Always Love You / Whitney Houston');
   });
 });

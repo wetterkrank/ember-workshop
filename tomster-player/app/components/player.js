@@ -1,22 +1,32 @@
 import Component from '@glimmer/component';
 import { inject as service } from '@ember/service';
-// import { action } from "@ember/object";
+import { action } from "@ember/object";
 
 
 export default class PlayerComponent extends Component {
-  @service player;
+  @service remoteControl;
 
   get song() {
-    return this.player.song;
+    return this.remoteControl.song;
   }
 
-  // @action
-  // play(song) {
-  //   this.service.play(song);
-  // }
+  @action
+  register(element) {
+    this.remoteControl.registerAudio(element);
+  }
 
-  // @action
-  // pause() {
-  //   this.service.stop();
-  // }
+  @action
+  canplay() {
+    this.remoteControl.audioCanPlay();
+  }
+
+  @action
+  playing() {
+    this.remoteControl.audioPlaying();
+  }
+
+  @action
+  paused() {
+    this.remoteControl.audioPaused();
+  }
 }

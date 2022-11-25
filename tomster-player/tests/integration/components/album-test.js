@@ -1,26 +1,40 @@
-import { module, test } from 'qunit';
-import { setupRenderingTest } from 'ember-qunit';
-import { render } from '@ember/test-helpers';
-import { hbs } from 'ember-cli-htmlbars';
+import { module, test } from "qunit";
+import { setupRenderingTest } from "ember-qunit";
+import { render } from "@ember/test-helpers";
+import { hbs } from "ember-cli-htmlbars";
 
-module('Integration | Component | album', function(hooks) {
+module("Integration | Component | album", function (hooks) {
   setupRenderingTest(hooks);
 
-  test('it renders', async function(assert) {
-    // Set any properties with this.set('myProperty', 'value');
-    // Handle any actions with this.set('myAction', function(val) { ... });
+  hooks.beforeEach(function () {
+    this.albumInfo = {
+      title: "Whitney Houston",
+      coverUrl: "#",
+    };
+    this.albumSongs = [
+      {
+        title: "I Will Always Love You",
+      },
+      {
+        title: "Even If My Heart Would Break",
+      },
+    ];
+  });
 
-    await render(hbs`<Album />`);
+  test("it renders the album title", async function (assert) {
+    await render(
+      hbs`<Album @info={{this.albumInfo}} @songs={{this.albumSongs}}/>`
+    );
 
-    assert.equal(this.element.textContent.trim(), '');
+    assert.dom(this.element).containsText("Whitney Houston");
+  });
 
-    // Template block usage:
-    await render(hbs`
-      <Album>
-        template block text
-      </Album>
-    `);
+  test("it renders the album songs", async function (assert) {
+    await render(
+      hbs`<Album @info={{this.albumInfo}} @songs={{this.albumSongs}}/>`
+    );
 
-    assert.equal(this.element.textContent.trim(), 'template block text');
+    assert.dom('[data-test-song]').exists({ count: 2 });
+    assert.dom(this.element).containsText("I Will Always Love You");
   });
 });

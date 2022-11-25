@@ -3,20 +3,20 @@ import { inject as service } from '@ember/service';
 import { action } from "@ember/object";
 
 export default class SongComponent extends Component {
-  @service player;
+  @service remoteControl;
 
   @action
   togglePlay(song) {
-    this.player.toggle(song);
+    this.remoteControl.toggle(song);
   }
 
   @action
   play(song) {
-    this.player.play(song);
+    this.remoteControl.play(song);
   }
 
   @action
   stop() {
-    this.player.stop();
+    this.remoteControl.stop();
   }
 }

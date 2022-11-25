@@ -7,20 +7,13 @@ module('Integration | Component | song', function(hooks) {
   setupRenderingTest(hooks);
 
   test('it renders', async function(assert) {
-    // Set any properties with this.set('myProperty', 'value');
-    // Handle any actions with this.set('myAction', function(val) { ... });
 
-    await render(hbs`<Song />`);
+    this.song = {
+      title: "I Will Always Love You"
+    };
 
-    assert.equal(this.element.textContent.trim(), '');
+    await render(hbs`<Song @song={{this.song}}/>`);
 
-    // Template block usage:
-    await render(hbs`
-      <Song>
-        template block text
-      </Song>
-    `);
-
-    assert.equal(this.element.textContent.trim(), 'template block text');
+    assert.equal(this.element.textContent.trim(), 'I Will Always Love You');
   });
 });

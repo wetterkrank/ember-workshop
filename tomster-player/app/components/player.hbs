@@ -1,15 +1,23 @@
 <div class="row">
   <audio
-      id="player"
-      controls
-      autoplay
-      src={{this.song.mp3Url}}>
+    id="audio"
+    controls
+    autoplay
+    src={{this.song.mp3Url}}
+    {{on "play" this.playing}}
+    {{on "pause" this.paused}}
+    {{on "canplay" this.canplay}}
+    {{did-insert this.register}}
+  >
   </audio>
 </div>
+
 <div class="row">
   <p class="text-center">
     {{#if this.song}}
-      {{this.song.title}} / {{this.song.album.title}}
+      {{this.song.title}}
+      /
+      {{this.song.album.title}}
     {{/if}}
   </p>
 </div>
